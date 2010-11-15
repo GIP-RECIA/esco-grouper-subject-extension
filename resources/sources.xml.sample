@@ -128,7 +128,7 @@ $Id: sources.example.xml,v 1.7 2008/11/22 21:39:14 mchyzer Exp $
 
     <attribute>displayName</attribute>
     <attribute>ENTPersonLogin</attribute>
-    <attribute>ENTTitle</attribute>
+    <attribute>personalTitle</attribute>
     <attribute>ENTPersonFonctions</attribute>
     <attribute>uid</attribute>
     <attribute>cn</attribute>

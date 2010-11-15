@@ -49,7 +49,7 @@ public class ESCOSearchWithScopeDecorator extends Search {
                 scopePartBldr.append(scopeAttribut);
                 scopePartBldr.append("=");
                 scopePartBldr.append(scopes[0]);
-                scopePartBldr.append("))");
+                scopePartBldr.append(")");
 
             } else {
                 // Several values in the scope.

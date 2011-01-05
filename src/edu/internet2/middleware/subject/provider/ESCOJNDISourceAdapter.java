@@ -44,7 +44,7 @@ public class ESCOJNDISourceAdapter extends JNDISourceAdapter {
      * {@inheritDoc}
      */
     @Override
-    public Subject getSubject(final String subjectId, final boolean exceptionIfNull)
+    public Subject getSubject(final String subjectId, @SuppressWarnings("unused") final boolean exceptionIfNull)
             throws SubjectNotFoundException, SubjectNotUniqueException {
         Subject subject = null;
         Search search = this.getSearch("searchSubject");
@@ -79,17 +79,22 @@ public class ESCOJNDISourceAdapter extends JNDISourceAdapter {
                 this.descriptionAttributeName };
         Attributes subjectAttributes = this.getLdapUnique(search, subjectId, attributeNames);
         subject = this.createSubject(subjectAttributes);
-        if (subject == null) {
+        if (subject == null && exceptionIfNull) {
             throw new SubjectNotFoundException("Subject " + subjectId + " not found.");
         }
         return subject;
     }
+    
+    
 
     /**
      * {@inheritDoc}
+     * @deprecated
      */
-    @Override
-    public Subject getSubject(final String subjectId) throws SubjectNotFoundException, SubjectNotUniqueException {
+	@SuppressWarnings("deprecation")
+	@Deprecated
+	@Override
+	public Subject getSubject(final String subjectId) throws SubjectNotFoundException, SubjectNotUniqueException {
         Subject subject = null;
         Search search = this.getSearch("searchSubject");
         if (search == null) {
@@ -109,8 +114,11 @@ public class ESCOJNDISourceAdapter extends JNDISourceAdapter {
 
     /**
      * {@inheritDoc}
+     * @deprecated
      */
-    @Override
+    @SuppressWarnings("deprecation")
+	@Deprecated
+	@Override
     public Subject getSubjectByIdentifier(final String subjectId) throws SubjectNotFoundException,
             SubjectNotUniqueException {
         Subject subject = null;
@@ -159,8 +167,8 @@ public class ESCOJNDISourceAdapter extends JNDISourceAdapter {
         final String[] attributeNames = {this.nameAttributeName, this.subjectIDAttributeName,
                 this.descriptionAttributeName, };
 
-        @SuppressWarnings("unchecked")
-        NamingEnumeration ldapResults = this.getLdapResults(search, searchExpression, attributeNames);
+        @SuppressWarnings("rawtypes")
+		NamingEnumeration ldapResults = this.getLdapResults(search, searchExpression, attributeNames);
         if (ldapResults == null) {
             return result;
         }

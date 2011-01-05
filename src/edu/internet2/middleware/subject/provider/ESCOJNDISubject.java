@@ -41,7 +41,6 @@ public class ESCOJNDISubject extends JNDISubject {
     @Override
     public String getAttributeValue(final String attName) {
 
-        @SuppressWarnings("unchecked")
         Set < String > values = this.getAttributeValues(attName);
         if (values == null) {
             return null;
